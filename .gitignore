@@ -1,0 +1,5 @@
+store/openid/**/*
+store/remember/*
+store/session/*
+store/trust/*
+*.log

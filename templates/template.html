@@ -1,0 +1,72 @@
+#def header(title="")
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>#slurp
+#if $title
+$title #slurp
+#end if
+UCC OpenID#slurp
+</title>
+<style type="text/css"><!--
+body {
+  width: 50em;
+  font-family: Trebuchet MS, Bitstream Vera Sans, sans-serif;
+}
+.identity {
+  background: left 50% no-repeat url(/openid/images/openid-inputicon.gif);
+  padding-left: 18px;
+}
+.form {
+  border: 1px solid #666;
+  background: #eee;
+  width: 30em;
+  padding: .4em;
+}
+.primary-action, .secondary-action {
+  width: 15em;
+  float: left;
+}
+.primary-action {
+  border-right: none;
+}
+.secondary-action {
+  border-left: none;
+}
+.form th {
+  text-align: right;
+}
+.primary-action th.actions {
+  text-align: right;
+}
+.secondary-action th.actions {
+  text-align: left;
+}
+#username, #password {
+  width: 100%;
+}
+.form #identity {
+  font-style: italic;
+}
+.error {
+  color: red;
+  text-weight: bold;
+}
+input .error {
+  border: red;
+}
+--></style>
+<link rel="shortcut icon" href="https://secure.ucc.asn.au/openid/images/openid-inputicon.gif">
+</head>
+<body>
+<h2>#slurp
+#if $title
+$title #slurp
+#end if
+UCC OpenID#slurp
+</h2>
+#end def
+#def footer
+</body>
+</html>
+#end def

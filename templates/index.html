@@ -1,0 +1,24 @@
+#include "template.html"
+$header()
+
+#if $user == None
+<p style="text-align: right; margin-top: -3em;">Not logged in. [<a href="login">Login</a>]</p>
+#else
+<p style="text-align: right; margin-top: -3em;">Logged in as <a href="account"><strong>$user</strong></a>. [<a href="logout">Logout</a>]</p>
+#end if
+
+<p>The <a href="https://secure.ucc.asn.au/openid">UCC OpenID service</a> lets you use you UCC username as an OpenID of the form <span class="identity">http://<em>username</em>.ucc.asn.au/</span>. You can use it after a simple addition to your UCC homepage:</p>
+
+<p>Add the following lines to the index page in your ~/public-html directory:</p>
+
+<p class="code"><code>&lt;link rel="openid.server" href="https://secure.ucc.asn.au/openid/" /&gt;</code></p>
+
+<p>That's it! You can now enter <span class="identity">http://<em>username</em>.ucc.asn.au/</span> as your OpenID on compatible websites and login using your UCC username and password.</p>
+
+<p><strong>Coming soon:</strong> Delegated OpenID authentication to Tartarus (the <a href="http://www.uwa.edu.au/">University of Western Australia</a> <a href="http://www.its.uwa.edu.au/students">central student server)</a>.</p>
+
+<p>For more information see the <a href="http://www.openid.net/">OpenID website</a>.</p>
+
+<p>UCC OpenID is written in <a href="http://www.python.org/">Python</a> using <a href="http://www.webpy.org/">Web.py</a>, including <a href="http://www.saddi.com/software/flup/">flup</a> session middleware with <a href="http://groups.google.com/group/webpy/browse_thread/thread/1a5c7505949afd6d">extensions by Adam Atlas</a> (further modified), and the open-source <a href="http://janrain.com/">JanRain</a> <a href="http://www.openidenabled.com/openid/libraries/python">OpenID library</a>.</p>
+
+$footer()

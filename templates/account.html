@@ -1,0 +1,20 @@
+#include "template.html"
+$header("Account Information -")
+
+<p>You are currently logged in as <strong>$user</strong> from IP <strong>$ip</strong>. <a href="logout">Logout</a></p>
+
+<h3>Trusted Sites</h3>
+
+<p>This is a list of sites your have set to always approve. If you not longer trust one of these sites you can remove it below.</p>
+
+#if $success == False
+<p>$notice</p>
+#end if
+
+<p><ul>
+#for $site in $sites
+  <li>$site - <a href="account?untrust=$site">Remove</a></li>
+#end for
+</ul></p>
+
+$footer()

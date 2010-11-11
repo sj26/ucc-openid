@@ -1,0 +1,84 @@
+#include "template.html"
+$header($title)
+
+#if $mode == "login"
+<p>You are not currently logged in to the UCC OpenID service. To continue you must log in.</p>
+#elif $mode == "approve"
+<p>The following website has requested access to your UCC OpenID. You can approve it just this once, approve it always (whenever you're logged in) or cancel the request.</p>
+#end if
+
+<form action="$mode" method="post" onsubmit="document.getElementById('submit').disabled = true; document.getElementById('cancel').disabled = true">
+#if $request_key != None
+<input type="hidden" name="request" value="$request_key" />
+#end if
+
+#if $failed
+<p class="failed">The username and/or password were incorrect.</p>
+#end if
+
+<p><table class="form">
+<tr><th><label for="username">Username:</label></th><td>#slurp
+#if $username
+<input type="hidden" name="username" value="$username" />$username#slurp
+#else:
+<input id="username" type="text" name="username" value="#slurp
+#if $default_username
+$default_username#slurp
+#else
+$username#slurp
+#end if
+" onchange="document.getElementById('identity').innerHTML = '$base_identity'.replace('%(user)s', this.value)" />#slurp
+#end if
+</td></tr>
+<tr><th><label for="openid">OpenID:</label></th><td><div id="identity" class="identity">#slurp
+#if $identity
+$identity#slurp
+#else
+[please log in]#slurp
+#end if
+</div></td></tr>
+#if $mode == "login"
+<tr><th><label for="password">Password:</label></th><td><input id="password" type="password" name="password" /></td></tr>
+<tr><th></th><td>
+        <input id="remember_never" type="radio" name="remember" value="never" checked="checked" />
+	<label for="remember_never">Don't remember me</label>
+
+	<br />
+
+        <input id="remember_session" type="radio" name="remember" value="session" />
+	<label for="remember_session">Remember me for this session</label>
+
+	<br />
+
+        <input id="remember_forever" type="radio" name="remember" value="forever" />
+	<label for="remember_forever">Remember me forever</label>
+</td></tr>
+#end if
+</table></p>
+
+#if $mode == "approve"
+<p><table class="form">
+  <tr><th><label for="website">Website:</label></th><td>$trust_root</td></tr>
+  <tr><th></th><td><input id="always" type="checkbox" name="always" value="true" /> <label for="always">Always approve this site</label></td></tr>
+</table></p>
+#end if
+
+<p><table class="form primary-action">
+  <tr><th class="actions" colspan="2"><input id="submit" type="submit" name="submit" value="$submit_name" /> </td></tr>
+</table></p>
+
+</form>
+
+<form action="$mode" method="post" onsubmit="document.getElementById('submit').disabled = true; document.getElementById('cancel').disabled = true">
+#if $request_key != None
+<input type="hidden" name="request" value="$request_key" />
+#end if
+<input type="hidden" name="cancel" value="true" />
+
+<p><table class="form secondary-action">
+  <tr><th class="actions" colspan="2"><input id="cancel" type="submit" name="cancel" value="$cancel_name" /> </td></tr>
+</table></p>
+
+</form>
+
+$footer()
